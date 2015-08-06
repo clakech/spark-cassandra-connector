@@ -105,7 +105,7 @@ object CassandraConnectorConf extends Logging {
 
   def apply(conf: SparkConf): CassandraConnectorConf = {
     ConfigCheck.checkConfig(conf)
-    val hostsStr = conf.get(CassandraConnectionHostProperty, InetAddress.getLocalHost.getHostAddress)
+    val hostsStr = conf.get(CassandraConnectionHostProperty)
     val hosts = for {
       hostName <- hostsStr.split(",").toSet[String]
       hostAddress <- resolveHost(hostName)
